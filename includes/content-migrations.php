@@ -7,10 +7,6 @@ class Content_Migrations {
 			'site_url'  => 'https://museum.wsu.edu/events',
 			'migration' => 'migration-museum-events',
 		),
-		array(
-			'site_url'  => 'http://wsuwp562.local',
-			'migration' => 'migration-museum-events',
-		),
 	);
 
 

@@ -9,11 +9,43 @@ class Migration_Museum_Events {
 		$args = array(
 			'post_type'      => array( self::$slug ),
 			'posts_per_page' => -1,
+			'post__not_in'   => self::get_exclude_ids(),
 		);
 
 		$result = new \WP_Query( $args );
 
 		return $result->posts;
+
+	}
+
+
+	private static function get_exclude_ids() {
+
+		$exclude_ids = array();
+
+		$args = array(
+			'post_type'      => Post_Type_Museum_Exhibit::get( 'post_type' ),
+			'posts_per_page' => -1,
+			'meta_query'     => array(
+				array(
+					'key'     => '_wsuwp_original_post_id',
+					'value'   => '',
+					'compare' => '!=',
+				),
+			),
+		);
+
+		$query = new \WP_Query( $args );
+
+		if ( $query->have_posts() ) {
+			$posts = $query->posts;
+			foreach ( $posts as $post ) {
+				$id            = $post->ID;
+				$exclude_ids[] = get_post_meta( $id, '_wsuwp_original_post_id', true );
+			}
+		}
+
+		return $exclude_ids;
 
 	}
 
@@ -111,7 +143,7 @@ class Migration_Museum_Events {
 		}
 
 		$content .= '<!-- wp:freeform -->';
-		$content .= str_replace( '<!--more-->', '', $post_content );
+		$content .= apply_filters( 'the_content', str_replace( '<!--more-->', '', $post_content ) );
 		$content .= '<!-- /wp:freeform -->';
 
 		if ( $has_sidebar_content ) {
@@ -119,7 +151,7 @@ class Migration_Museum_Events {
 			$content .= '<!-- wp:wsuwp/column -->';
 
 			$content .= '<!-- wp:freeform -->';
-			$content .= str_replace( '<!--more-->', '', $sidebar_content );
+			$content .= apply_filters( 'the_content', str_replace( '<!--more-->', '', $sidebar_content ) );
 			$content .= '<!-- /wp:freeform -->';
 
 			$content .= '<!-- /wp:wsuwp/column -->';

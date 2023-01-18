@@ -5,7 +5,7 @@ class Post_Type_Museum_Exhibit {
 	private static $slug = 'wsuwp_museum_exhibit';
 
 	private static $attributes = array(
-		'labels'       => array(
+		'labels'            => array(
 			'name'               => 'Exhibits',
 			'singular_name'      => 'Exhibit',
 			'all_items'          => 'All Exhibits',
@@ -18,23 +18,27 @@ class Post_Type_Museum_Exhibit {
 			'not_found'          => 'Not found',
 			'not_found_in_trash' => 'Not found in Trash',
 		),
-		'description'  => 'WSU Museum Exhibits.',
-		'public'       => true,
-		'hierarchical' => false,
-		'show_in_rest' => true,
-		'menu_icon'    => 'dashicons-images-alt',
-		'supports'     => array(
+		'description'       => 'WSU Museum Exhibits.',
+		'public'            => true,
+		'hierarchical'      => false,
+		'show_ui'           => true,
+		'show_in_nav_menus' => true,
+		'show_in_rest'      => true,
+		'menu_icon'         => 'dashicons-images-alt',
+		'supports'          => array(
 			'title',
 			'editor',
 			'thumbnail',
 			'revisions',
 			'custom-fields',
 		),
-		'taxonomies'   => array(
+		'taxonomies'        => array(
 			'category',
 			'post_tag',
 		),
-		'rewrite'      => array(
+		'has_archive'       => true,
+		'query_var'         => true,
+		'rewrite'           => array(
 			'slug'       => 'exhibit',
 			'with_front' => true,
 		),

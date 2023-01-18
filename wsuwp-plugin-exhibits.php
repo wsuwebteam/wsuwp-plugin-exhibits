@@ -3,7 +3,7 @@
  * Plugin Name: WSUWP Plugin Exhibits
  * Plugin URI: https://github.com/wsuwebteam/wsuwp-plugin-exhibits
  * Description: Adds a custom post type for creating museum exhibits.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Requires PHP: 7.3
  * Author: Washington State University, Dan White
  * Author URI: https://web.wsu.edu/

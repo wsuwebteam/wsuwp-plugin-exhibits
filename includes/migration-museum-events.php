@@ -86,10 +86,6 @@ class Migration_Museum_Events {
 
 				$content .= '</ul></figure>';
 				$content .= '<!-- /wp:gallery -->';
-			} else {
-				$content .= '<!-- wp:freeform -->';
-				$content .= $sidebar_content;
-				$content .= '<!-- /wp:freeform -->';
 			}
 		}
 
@@ -115,7 +111,7 @@ class Migration_Museum_Events {
 		}
 
 		$content .= '<!-- wp:freeform -->';
-		$content .= $post_content;
+		$content .= str_replace( '<!--more-->', '', $post_content );
 		$content .= '<!-- /wp:freeform -->';
 
 		if ( $has_sidebar_content ) {
@@ -123,7 +119,7 @@ class Migration_Museum_Events {
 			$content .= '<!-- wp:wsuwp/column -->';
 
 			$content .= '<!-- wp:freeform -->';
-			$content .= $sidebar_content;
+			$content .= str_replace( '<!--more-->', '', $sidebar_content );
 			$content .= '<!-- /wp:freeform -->';
 
 			$content .= '<!-- /wp:wsuwp/column -->';

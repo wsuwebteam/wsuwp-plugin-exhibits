@@ -3,7 +3,7 @@
 class Plugin {
 
 
-	private static $version = '1.0.3';
+	private static $version = '1.0.4';
 
 
 	public static function get( $property ) {

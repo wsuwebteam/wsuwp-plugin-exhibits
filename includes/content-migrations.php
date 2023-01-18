@@ -8,7 +8,7 @@ class Content_Migrations {
 			'migration' => 'migration-museum-events',
 		),
 		array(
-			'site_url'  => 'https://stage.web.wsu.edu/museum-wds/',
+			'site_url'  => 'https://stage.web.wsu.edu/museum-wds',
 			'migration' => 'migration-museum-events',
 		),
 	);

@@ -52,12 +52,19 @@ class Migration_Museum_Events {
 
 	private static function append_hero_content( $content, $post ) {
 
-		$artist    = get_post_meta( $post->ID, '_exhibit_artist_text', true );
+		$artist = get_post_meta( $post->ID, '_exhibit_artist_text', true );
+
 		$slide_ids = array(
 			get_post_thumbnail_id( $post->ID ),
 			get_post_meta( $post->ID, 'museum-exhibit_slide-two_thumbnail_id', true ),
 			get_post_meta( $post->ID, 'museum-exhibit_slide-three_thumbnail_id', true ),
 		);
+
+		foreach ( $slide_ids as $key => $value ) {
+			if ( ! is_numeric( $value ) ) {
+				unset( $slide_ids[ $key ] );
+			}
+		}
 
 		$content .= '<!-- wp:wsuwp/hero {"title":"' . $post->post_title . '","headingTag":"h1",';
 		$content .= '"caption":"' . $artist . '",';
@@ -184,6 +191,8 @@ class Migration_Museum_Events {
 		);
 
 		$post_id = wp_insert_post( $post_data );
+
+		set_post_thumbnail( $post_id, get_post_thumbnail_id( $post->ID ) );
 
 	}
 
